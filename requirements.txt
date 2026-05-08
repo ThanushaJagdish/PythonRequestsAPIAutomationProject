@@ -1,0 +1,10 @@
+pytest
+requests
+jsonpath-ng
+allure-pytest
+jsonschema
+requests-oauthlib
+faker
+pytest-html
+pytest-xdist
+openpyxl
