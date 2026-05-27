@@ -1,4 +1,3 @@
-@echo off
 echo ==============================
 echo Running Pytest Test Suite
 echo ==============================
@@ -17,4 +16,3 @@ echo ==============================
 
 allure open reports/allure-report
 
-pause

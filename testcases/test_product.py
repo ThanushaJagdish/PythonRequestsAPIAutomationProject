@@ -1,7 +1,6 @@
 import requests
 import pytest
-import json
-from routes.Routes import Routes
+from routes.routes import Routes
 from payloads.Payloads import Payload
 
 class TestProductAPI:
@@ -28,15 +27,17 @@ class TestProductAPI:
         data = response.json()
         #print(json.dumps(data, indent=4))
         assert len(data) > 0
+        assert data['id']==int(prod_id)
 
     @pytest.mark.order(3)
     def test_get_limited_products(self):
-        endpoint = self.base_url + Routes.GET_PRODUCTS_WITH_LIMIT.format(limit=3)
+        limit = self.config_reader.get_property("limit")
+        endpoint = self.base_url + Routes.GET_PRODUCTS_WITH_LIMIT.format(limit=limit)
         response = requests.get(endpoint)
         assert response.status_code == 200
         data = response.json()
         #print(json.dumps(data, indent=4))
-        assert len(data) > 0
+        assert len(data) == int(limit)
 
     @pytest.mark.order(4)
     def test_get_sorted_products_desc(self):
@@ -66,6 +67,8 @@ class TestProductAPI:
         assert response.status_code == 200
         data = response.json()
         #print(json.dumps(data, indent=4))
+        expected_categories = set(["electronics","jewelery","men's clothing","women's clothing"])
+        assert set(data)== expected_categories
 
     @pytest.mark.order(7)
     def test_get_product_by_category(self):
@@ -75,7 +78,7 @@ class TestProductAPI:
         data = res.json()
         #print(json.dumps(data, indent=4))
         prod_category_received = set([item['category'] for item in data])
-        assert "electronics" in prod_category_received
+        assert all(category == "electronics" for category in prod_category_received)
 
     @pytest.mark.order(8)
     @pytest.mark.dependency(name="add product")
@@ -85,6 +88,10 @@ class TestProductAPI:
         assert res.status_code == 201
         data = res.json()
         #print(json.dumps(data, indent=4))
+        assert data['title'] == product_payload.title
+        assert data['price'] == product_payload.price
+        assert data['description'] == product_payload.description
+        assert data['category'] == product_payload.category
 
     @pytest.mark.order(9)
     @pytest.mark.dependency(depends=["add product"])
@@ -103,9 +110,8 @@ class TestProductAPI:
     def test_delete_product(self):
         product_id = self.config_reader.get_property("productId")
         endpoint = self.base_url+Routes.DELETE_PRODUCT.format(id=product_id)
-        payload = Payload().product_payload().__dict__
-        res = requests.delete(endpoint,json=payload)
+        res = requests.delete(endpoint)
         assert res.status_code == 200
-        data = res.json()
-        #print(json.dumps(data,indent=4))
+
+
 

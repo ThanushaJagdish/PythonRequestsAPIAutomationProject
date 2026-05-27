@@ -1,8 +1,7 @@
 import requests
 import pytest
 import os
-from routes.Routes import Routes
-from payloads.Payloads import Payload
+from routes.routes import Routes
 from utils.DataProviders import read_json_data
 from datamodels.Products import Product
 

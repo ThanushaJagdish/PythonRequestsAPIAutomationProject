@@ -1,0 +1,7 @@
+[35mDEBUG   [0m urllib3.connectionpool:connectionpool.py:1062 Starting new HTTPS connection (1): fakestoreapi.com:443
+[35mDEBUG   [0m urllib3.connectionpool:connectionpool.py:544 https://fakestoreapi.com:443 "GET //products/categories HTTP/1.1" 200 None
+[32mINFO    [0m root:conftest.py:21 REQUEST: GET https://fakestoreapi.com//products/categories
+[32mINFO    [0m root:conftest.py:22 Request Headers: {'User-Agent': 'python-requests/2.34.2', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'}
+[32mINFO    [0m root:conftest.py:25 RESPONSE Status: 200
+[32mINFO    [0m root:conftest.py:26 Response Headers: {'Date': 'Wed, 27 May 2026 07:47:03 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'access-control-allow-origin': '*', 'etag': 'W/"3e-cdq81BKoKIRIQmboBVN84Vj+vkM"', 'x-powered-by': 'Express', 'cf-cache-status': 'DYNAMIC', 'Nel': '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}', 'Report-To': '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=grqGfRpwO9N4a0t0cDhIdau7g7VpMFmdXZCNmuWZVq9tYFrgs4%2B9vG3KqxWnqnKsPmBC4fOc3WMr7BKscq909sbQjcnzhSEyKiL%2F5Kdmho6qVuHe%2FiKt%2FT4r3x2bLPxXeAki"}]}', 'Content-Encoding': 'gzip', 'Server': 'cloudflare', 'CF-RAY': 'a02368cb0d473912-SIN', 'alt-svc': 'h3=":443"; ma=86400'}
+[32mINFO    [0m root:conftest.py:28 Response Body: ['electronics', 'jewelery', "men's clothing", "women's clothing"]

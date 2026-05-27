@@ -3,7 +3,8 @@ import configparser
 
 config = configparser.ConfigParser()
 
-path = os.path.abspath(os.getcwd())+"\\configurations\\config.ini"
+#path = os.path.abspath(os.getcwd())+"\\configurations\\config.ini"
+path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "configurations", "config.ini"))
 config.read(path)
 
 class ReadConfig:

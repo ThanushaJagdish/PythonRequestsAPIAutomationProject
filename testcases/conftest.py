@@ -1,5 +1,5 @@
 import pytest
-from routes.Routes import Routes
+from routes.routes import Routes
 from utils.ConfigReader import ReadConfig
 import logging
 import os
@@ -8,10 +8,10 @@ import requests
 
 
 LOG_FILE = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "logs", "test_logging.log"))
-logging.basicConfig(
+logging.basicConfig(  #configuring logging system
    filename=LOG_FILE,
-   level=logging.DEBUG,
-   format="%(asctime)s | %(levelname)s | %(message)s",
+   level=logging.DEBUG, #DEBUG INFO WARNING ERROR CRITICAL
+   format="%(asctime)s | %(levelname)s | %(message)s", #eg-2026-05-26 10:20:11 | INFO | REQUEST: GET https://api.com/users
    filemode='a'  # Add data to log file each run
 )
 logger = logging.getLogger()
